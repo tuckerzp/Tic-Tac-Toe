@@ -1,11 +1,10 @@
 class GameBoard:
-    __board = [" ", " ", " ", " ", " ", " ", " ", " "]
-    #         ["0", "1", "3", "4", "5", "6", "7", "8"]
+    __board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
     #               0 | 1 | 2
     #               ---------
     #               3 | 4 | 5
     #               ---------
-    #               6 | 7 | 9
+    #               6 | 7 | 8
 
     __player_one = " "
     __player_two = " "
@@ -15,16 +14,18 @@ class GameBoard:
         self.__player_one = player_one
         self.__player_two = player_two
 
-    # Returns true if current player has win conditions met
-    def check_win(self, player):
+    def check_player(self, player):
         if player == 1:
-            letter = self.__player_one
-            print("Player one checking...\n")
+            return self.__player_one
         elif player == 2:
-            letter = self.__player_two
+            return self.__player_two
         else:
             print("Error incorrect player")
             return
+
+    # Returns true if current player has win conditions met
+    def check_win(self, player):
+        letter = self.check_player(player)
 
         if (self.__board[0] == letter and self.__board[1] == letter and self.__board[2] == letter
                 or self.__board[3] == letter and self.__board[4] == letter and self.__board[5] == letter
@@ -34,6 +35,7 @@ class GameBoard:
                 or self.__board[2] == letter and self.__board[5] == letter and self.__board[8] == letter
                 or self.__board[0] == letter and self.__board[4] == letter and self.__board[8] == letter
                 or self.__board[2] == letter and self.__board[4] == letter and self.__board[8] == letter):
+            print("Player #%d wins" % player)
             return True
         else:
             return False
@@ -41,17 +43,9 @@ class GameBoard:
     # edits board[]'s position using player's character
     # returns true if spot if empty else returns false
     def edit_board(self, player, position):
-        if player == 1:
-            letter = self.__player_one
-            print("Edit Board player one\n")
-        elif player == 2:
-            letter = self.__player_two
-            print("Edit Board player two\n")
-        else:
-            print("Error incorrect player")
-            return
+        letter = self.check_player(player)
 
-        if self.__board[position] == " ":
+        if self.__board[position] != "X" and self.__board[position] != "O":
             self.__board[position] = letter
             return True
         else:
@@ -61,3 +55,10 @@ class GameBoard:
     # returns the board
     def get_board(self):
         return self.__board
+
+    def print_board(self):
+        print(" %s |  %s  |  %s " % (self.__board[0], self.__board[1], self.__board[2]))
+        print("-----------------")
+        print(" %s |  %s  |  %s " % (self.__board[3], self.__board[4], self.__board[5]))
+        print("-----------------")
+        print(" %s |  %s  |  %s \n" % (self.__board[6], self.__board[7], self.__board[8]))

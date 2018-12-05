@@ -1,7 +1,7 @@
-Idea of Minimax Algorithm from: https://medium.freecodecamp.org/how-to-make-your-tic-tac-toe-game-unbeatable-by-using-the-minimax-algorithm-9d690bad4b37 
+Idea of Min max Algorithm from: https://medium.freecodecamp.org/how-to-make-your-tic-tac-toe-game-unbeatable-by-using-the-minimax-algorithm-9d690bad4b37
 
 
-A Minimax algorithm can be best defined as a recursive function that does the following things:
+A Min max algorithm can be best defined as a recursive function that does the following things:
 
     1. return a value if a terminal state is found (+10, 0, -10)
     2. go through available spots on the board
@@ -29,6 +29,6 @@ human player wins: score = -10
 ai    player wins: score = +10
 tie              : score =   0 
 	->Length of available spots = 0
-***If the minimax function does not find a terminal state, it keeps recursively going level by level deeper into the game. This recursion happens until it reaches a terminal state and returns a score one level up.***
+***If the min max function does not find a terminal state, it keeps recursively going level by level deeper into the game. This recursion happens until it reaches a terminal state and returns a score one level up.***
 
 
