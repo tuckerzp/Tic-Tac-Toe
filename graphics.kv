@@ -1,0 +1,124 @@
+#Kivy 1.10.1
+
+<TitleScreen>:
+
+    FloatLayout:
+        AsyncImage:
+            source: "tictactoe_title.png"
+            pos: (0, 100)
+        Button:
+            font_size: 30
+            color: 0, 1, 0, 1
+            size_hint: 0.5, 0.1
+            pos: (195, 150)
+            id: PvP
+            text: "Player v. Player"
+            on_release: root.manager.current = "Choose"; root.p_v_p();
+        Button:
+            font_size: 30
+            color: 0, 1, 0, 1
+            size_hint: 0.5, 0.1
+            pos: (195, 85)
+            id: PvC
+            text: "Player v. Computer"
+            on_release: root.manager.current = "Choose"; root.p_v_c();
+        Button:
+            font_size: 30
+            color: 0, 1, 0, 1
+            size_hint: 0.5, 0.1
+            pos: (195, 20)
+            id: CvC
+            text: "Computer v. Computer"
+            on_release: root.manager.current = "Choose"; root.c_v_c();
+
+<ChooseScreen>: # uses root widget
+
+    FloatLayout:
+        Label:
+            font_size: 30
+            color: 1, 1, 1, 1
+            size_hint: 0.5, 0.5
+            pos: (215, 350)
+            id: label_choose
+            text: root.label
+        Button:
+            font_size: 60
+            color: 1, 1, 1, 1
+            size_hint: 0.4, 0.4
+            pos: (50, 100)
+            id: X_Button
+            text: "X"
+            on_release: root.x_button_press()
+        Button:
+            font_size: 60
+            color: 1, 1, 1, 1
+            size_hint: 0.4, 0.4
+            pos: (425, 100)
+            id: O_Button
+            text: "O"
+            on_release: root.o_button_press()
+
+<GameScreen>:
+
+    FloatLayout:
+        Button:
+            id: btn0
+            text: " "
+            pos_hint: {"right": 0.3, "y": 0.7}
+            on_release: root.btn0()
+        Button:
+            id: btn1
+            text: " "
+            pos_hint: {"right": 0.6, "y": 0.7}
+            on_release: root.btn1()
+        Button:
+            id: btn2
+            text: " "
+            pos_hint: {"right": 0.9, "y": 0.7}
+            on_release: root.btn2()
+        Button:
+            id: btn3
+            text: " "
+            pos_hint: {"right": 0.3, "y": 0.4}
+            on_release: root.btn3()
+        Button:
+            id: btn4
+            text: " "
+            pos_hint: {"right": 0.6, "y": 0.4}
+            on_release: root.btn4()
+        Button:
+            id: btn5
+            text: " "
+            pos_hint: {"right": 0.9, "y": 0.4}
+            on_release: root.btn5()
+        Button:
+            id: btn6
+            text: " "
+            pos_hint: {"right": 0.3, "y": 0.1}
+            on_release: root.btn6()
+        Button:
+            id: btn7
+            text: " "
+            pos_hint: {"right": 0.6, "y": 0.1}
+            on_release: root.btn7()
+        Button:
+            id: btn8
+            text: " "
+            pos_hint: {"right": 0.9, "y": 0.1}
+            on_release: root.btn8()
+
+<WinScreen>:
+
+    FloatLayout:
+        Label:
+            font_size: 30
+            color: 1, 1, 1, 1
+            size_hint: 0.5, 0.5
+            pos: (215, 350)
+            id: label_choose
+            text: root.label
+
+<Button>:  # Default settings for button
+    font_size: 40
+    color: 1, 0, 0, 1
+    size_hint: 0.2, 0.2

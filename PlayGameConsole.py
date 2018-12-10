@@ -1,46 +1,49 @@
 from GameBoard import GameBoard
+import Graphics
 
 
 class GameConsole:
 
-    def com_think(self):
-        print("clowns")
+    set_game = " "
+    set_player_one = " "
+    set_player_two = " "
 
     @staticmethod
-    def player_vs_player():
+    def game_choice(game):
+        global set_game
+        set_game = game
+        return game
 
-        print("Enter Player one: ")
-        player_one = input()                                                    # Kivy Input Here
-        while player_one != "X" and player_one != "O":
-            print("Player one must be X or O")
-            player_one = input()
+    def set_player_one(self, player_one):
+        if set_game == "player_vs_player":
+            self.set_player_one = player_one
+            print(player_one)
+        return player_one
 
-        print("Enter Player two: ")
-        player_two = input()                                                    # Kivy Input Here
-        while player_two != "X" and player_two != "O":
-            print("Player two must be X or O")
-            player_two = input()                                                # Kivy Input Here
+    def set_player_two(self, player_two):
+        if set_game == "player_vs_player":
+            self.set_player_two = player_two
+            print(player_two)
+        return player_two
 
-        game = GameBoard(player_one, player_two)
-        game.print_board()
+    game = GameBoard(set_player_one, set_player_two)
+    game.print_board()
 
-        player_number = 1
-        while not game.check_win(1) and not game.check_win(2):
+    @staticmethod
+    def update_board(player_number, position):
+        if not GameConsole.game.check_win(1) and not GameConsole.game.check_win(2):
             print("Player #%d's turn\n" % player_number)
-            print("Enter Position")
-            position = int(input())                                             # Kivy Input Here
             if position is None or position > 8 or position < 0:
                 print("Error")
             else:
-                game.edit_board(player_number, position)
-                if player_number == 1:
-                    player_number = 2
+                GameConsole.game.edit_board(player_number, position)
+                if Graphics.GameScreen.player_number == 1:
+                    Graphics.GameScreen.player_number = 2
                 else:
-                    player_number = 1
-                game.print_board()
+                    Graphics.GameScreen.player_number = 1
+            if GameConsole.game.check_win(1):
+                Graphics.GameScreen.player_one_win = True
+            if GameConsole.game.check_win(2):
+                Graphics.GameScreen.player_two_win = True
 
-        game.print_board()
-
-
-
-
+        GameConsole.game.print_board()
