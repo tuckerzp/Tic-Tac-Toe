@@ -13,7 +13,7 @@
             pos: (195, 150)
             id: PvP
             text: "Player v. Player"
-            on_release: root.manager.current = "Choose"; root.p_v_p();
+            on_release: root.manager.current = "Game"; root.p_v_p();
         Button:
             font_size: 30
             color: 0, 1, 0, 1
@@ -21,7 +21,7 @@
             pos: (195, 85)
             id: PvC
             text: "Player v. Computer"
-            on_release: root.manager.current = "Choose"; root.p_v_c();
+            on_release: root.manager.current = "Game"; root.p_v_c();
         Button:
             font_size: 30
             color: 0, 1, 0, 1
@@ -29,34 +29,7 @@
             pos: (195, 20)
             id: CvC
             text: "Computer v. Computer"
-            on_release: root.manager.current = "Choose"; root.c_v_c();
-
-<ChooseScreen>: # uses root widget
-
-    FloatLayout:
-        Label:
-            font_size: 30
-            color: 1, 1, 1, 1
-            size_hint: 0.5, 0.5
-            pos: (215, 350)
-            id: label_choose
-            text: root.label
-        Button:
-            font_size: 60
-            color: 1, 1, 1, 1
-            size_hint: 0.4, 0.4
-            pos: (50, 100)
-            id: X_Button
-            text: "X"
-            on_release: root.x_button_press()
-        Button:
-            font_size: 60
-            color: 1, 1, 1, 1
-            size_hint: 0.4, 0.4
-            pos: (425, 100)
-            id: O_Button
-            text: "O"
-            on_release: root.o_button_press()
+            on_release: root.manager.current = "Game"; root.c_v_c();
 
 <GameScreen>:
 
@@ -116,7 +89,23 @@
             size_hint: 0.5, 0.5
             pos: (215, 350)
             id: label_choose
-            text: root.label
+            on_text: root.label_change()
+        Button:
+            font_size: 30
+            color: 0, 1, 0, 1
+            size_hint: 0.5, 0.1
+            pos: (195, 150)
+            id: title_btn
+            text: "Return to Menu"
+            on_release: root.manager.current = "Title"
+        Button:
+            font_size: 30
+            color: 0, 1, 0, 1
+            size_hint: 0.5, 0.1
+            pos: (195, 85)
+            id: rematch_btn
+            text: "Rematch?"
+            on_release: root.manager.current = "Game"
 
 <Button>:  # Default settings for button
     font_size: 40
