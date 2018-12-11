@@ -36,14 +36,16 @@ class GameBoard:
                 or self.__board[0] == letter and self.__board[4] == letter and self.__board[8] == letter
                 or self.__board[2] == letter and self.__board[4] == letter and self.__board[6] == letter):
             print("Player #%d wins" % player)
-            return True
+            self.print_board()
+            self.__board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+            return player
         elif(self.__board[0] != "0" and self.__board[1] != "1" and self.__board[2] != "2" and
                 self.__board[3] != "3" and self.__board[4] != "4" and self.__board[5] != "5" and
                 self.__board[6] != "6" and self.__board[7] != "7" and self.__board[8] != "8"):
             print("Game Tied!")
-            return True
-        else:
-            return False
+            self.print_board()
+            self.__board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+            return 3
 
     # edits board[]'s position using player's character
     # returns true if spot if empty else returns false
