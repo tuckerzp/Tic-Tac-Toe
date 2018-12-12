@@ -1,5 +1,11 @@
+import Graphics # imports Graphics.py
+
+
 def main():
-    print("Hello World!")
+    """"
+    Starting point in program: Runs main GUI class
+    """
+    Graphics.GraphicsApp().run()
 
 
 if __name__ == "__main__":
