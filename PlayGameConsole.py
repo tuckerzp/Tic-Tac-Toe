@@ -1,5 +1,5 @@
-from GameBoard import GameBoard
-import Graphics
+from GameBoard import GameBoard # import GameBoard class from GameBoard.py
+import Graphics # import Graphics.py
 
 
 class ComThink:
@@ -128,7 +128,11 @@ class ComThink:
 
 
 class GameConsole:
+    """"
+    Introduction screen showing options to play
 
+    :param Screen: Screen in GUI. Tasked by screen manager.
+    """
     player_one = "X"
     player_two = "O"
     set_game = " "
@@ -136,6 +140,12 @@ class GameConsole:
 
     @staticmethod
     def game_choice(game):
+        """"
+        Sets the game choice chosen by player.
+
+        :param game: takes in the game type
+        :return: sets the type of game
+        """
         global set_game
         set_game = game
         return set_game
@@ -145,6 +155,12 @@ class GameConsole:
 
     @staticmethod
     def update_board(player_number, position):
+            """"
+            Updates the GameBoard from whats input in Graphics
+
+            :param player_number: player's number (if computer, computer is always player2)
+            :param position: letter position on the board
+            """
             if set_game == "player_vs_computer":
                 Graphics.GameScreen.com_exist = True
             if (GameConsole.game.check_win(1) != 1 and GameConsole.game.check_win(2) != 2
