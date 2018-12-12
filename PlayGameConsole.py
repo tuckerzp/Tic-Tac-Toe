@@ -3,9 +3,17 @@ import Graphics # import Graphics.py
 
 
 class ComThink:
+    """
+    COM "Thinking" based on current board
+    """
 
     @staticmethod
     def find_best_move(board):
+        """
+        Finds the best move for the COM player
+        :param board: Game board object
+        :return: position to play
+        """
         new_board = board.get_board()
 
         # X | X | X <-- Check for win on this row
