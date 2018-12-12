@@ -10,17 +10,17 @@
             font_size: 30                   # --> font size of text button
             color: 0, 1, 0, 1               # --> text color of button (r,g,b,transparency)
             size_hint: 0.5, 0.1             # --> size of button (width, height)
-            pos: (195, 150)                 # --> position of button (x, y)
+            pos_hint: {"right": 0.75, "y": 0.2} # --> position scaling: aligned right 75% over, and y %20 up
             id: PvP                         # --> identification for button
-            text: "Player v. Player"        # --> text displayed on button
+            text: "Player vs. Player"        # --> text displayed on button
             on_release: root.manager.current = "Game"; root.p_v_p(); # --> when button is clicked on and released switch to screen named "Game" (managed by screen manager) and run method "p_v_p()"
         Button:                             # Create button - sets game to PvC
             font_size: 30
             color: 0, 1, 0, 1
             size_hint: 0.5, 0.1
-            pos: (195, 85)
+            pos_hint: {"right": 0.75, "y": 0.05}
             id: PvC
-            text: "Player v. Computer"
+            text: "Player vs. Computer"
             on_release: root.manager.current = "Game"; root.p_v_c();
 
 <GameScreen>:                               #Elements to appear on TitleScreen
@@ -37,7 +37,7 @@
         Button:                             # Button0 (Slot 0 on gameboard)
             id: btn0
             text: " "
-            pos_hint: {"right": 0.3, "y": 0.7} # --> position scaling: aligned right 30% over, and y %70 up
+            pos_hint: {"right": 0.3, "y": 0.7}
             on_release: root.btn0()
         Button:                             # Button1 (Slot 1 on gameboard)
             id: btn1
@@ -87,7 +87,7 @@
             font_size: 30
             color: 1, 1, 1, 1
             size_hint: 0.5, 0.5
-            pos: (215, 350)
+            pos: (200, 300)
             id: label_choose
             text: "X's Win!"
         Button:                             # Button - close program
@@ -106,7 +106,7 @@
             font_size: 30
             color: 1, 1, 1, 1
             size_hint: 0.5, 0.5
-            pos: (215, 350)
+            pos: (200, 300)
             id: label_choose
             text: "O's Win!"
         Button:                             # Button - close program
@@ -125,7 +125,7 @@
             font_size: 30
             color: 1, 1, 1, 1
             size_hint: 0.5, 0.5
-            pos: (215, 350)
+            pos: (200, 300)
             id: label_choose
             text: "Cats Game!"
         Button:                             # Button - close program

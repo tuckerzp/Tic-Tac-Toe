@@ -98,9 +98,9 @@ class GameScreen(Screen):
         Change text of id: label_turn
         """
         if self.player_number == 1:
-            self.ids.label_turn.text = "Xs turn"
+            self.ids.label_turn.text = "X's turn"
         if self.player_number == 2:
-            self.ids.label_turn.text = "Os turn"
+            self.ids.label_turn.text = "O's turn"
 
     def computer_pick(self):
         """"
