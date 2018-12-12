@@ -1,11 +1,11 @@
-#Tic-Tac-Toe
+# Tic-Tac-Toe
 This is a tic-tac-toe game with PvP & PvCOM 
 
-##Required to run:
+## Required to run:
 1. Kivy v1.10.1
 2. Python v3.7
 
-##To Start:
+## To Start:
 1. Download zip of files
 2. Run the main.py file
 3. Choose game mode
