@@ -4,7 +4,6 @@ from kivy.lang import Builder
 from kivy.properties import StringProperty    # used to change text
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition, SlideTransition    # ScreenManager: keeps track of screens,
 # Screen allow for the creation of screens
-from kivy.clock import Clock
 
 import PlayGameConsole
 
@@ -47,37 +46,62 @@ class TitleScreen(Screen):
         game = "player_vs_computer"
         self.game_choice()
 
-    def c_v_c(self):
-        """"
-        Sets game to Computer vs Computer depending if button is pressed with title.
-        """
-        global game
-        game = "computer_vs_computer"
-        self.game_choice()
-
 
 class GameScreen(Screen):
 
+    com_exist = False
     position = None
     player_number = 1
     player_one_win = False
     player_two_win = False
+    player_tie = False
 
-    def clear_btns(self):
-        self.ids.btn0.text = " "
-        self.ids.btn1.text = " "
-        self.ids.btn2.text = " "
-        self.ids.btn3.text = " "
-        self.ids.btn4.text = " "
-        self.ids.btn5.text = " "
-        self.ids.btn6.text = " "
-        self.ids.btn7.text = " "
-        self.ids.btn8.text = " "
+    change0 = True
+    change1 = True
+    change2 = True
+    change3 = True
+    change4 = True
+    change5 = True
+    change6 = True
+    change7 = True
+    change8 = True
+
+    def change_btn(self, position):
+        if position == 0:
+            GameScreen.ids.btn0.text = " "
+            self.change0 = False
+        if position == 1:
+            self.GameScreen.ids.btn1.text = " "
+            self.GameScreen.change1 = False
+        if position == 2:
+            self.GameScreen.ids.btn2.text = " "
+            self.GameScreen.change2 = False
+        if position == 3:
+            self.GameScreen.ids.btn3.text = " "
+            self.GameScreen.change3 = False
+        if position == 4:
+            self.GameScreen.ids.btn4.text = " "
+            self.GameScreen.change4 = False
+        if position == 5:
+            self.GameScreen.ids.btn5.text = " "
+            self.GameScreen.change5 = False
+        if position == 6:
+            self.GameScreen.ids.btn6.text = " "
+            self.GameScreen.change6 = False
+        if position == 7:
+            self.GameScreen.ids.btn7.text = " "
+            self.GameScreen.change7 = False
+        if position == 8:
+            self.GameScreen.ids.btn8.text = " "
+            self.GameScreen.change8 = False
 
     def check_win(self):
-        if self.player_one_win or self.player_two_win:
-            WinScreen.label_change(self.player_one_win, self.player_two_win)
-            self.manager.current = "Win"
+        if self.player_one_win:
+            self.manager.current = "X"
+        if self.player_two_win:
+            self.manager.current = "O"
+        if self.player_tie:
+            self.manager.current = "Cat"
 
     def set_piece(self):
         if self.player_number == 1:
@@ -85,91 +109,159 @@ class GameScreen(Screen):
         if self.player_number == 2:
             return PlayGameConsole.GameConsole.player_one
 
-    def btn0(self):
-        position = 0
-        PlayGameConsole.GameConsole.update_board(self.player_number, position)
-        self.ids.btn0.text = self.set_piece()
+    def label(self):
+        if self.player_number == 1:
+            self.ids.label_turn.text = "Xs turn"
+        if self.player_number == 2:
+            self.ids.label_turn.text = "Os turn"
+
+    def computer_pick(self):
+        self.position = PlayGameConsole.ComThink.find_best_move(PlayGameConsole.GameConsole.game)
+        PlayGameConsole.GameConsole.update_board(self.player_number, self.position)
+        if self.position == 0:
+            self.ids.btn0.text = self.set_piece()
+        if self.position == 1:
+            self.ids.btn1.text = self.set_piece()
+        if self.position == 2:
+            self.ids.btn2.text = self.set_piece()
+        if self.position == 3:
+            self.ids.btn3.text = self.set_piece()
+        if self.position == 4:
+            self.ids.btn4.text = self.set_piece()
+        if self.position == 5:
+            self.ids.btn5.text = self.set_piece()
+        if self.position == 6:
+            self.ids.btn6.text = self.set_piece()
+        if self.position == 7:
+            self.ids.btn7.text = self.set_piece()
+        if self.position == 8:
+            self.ids.btn8.text = self.set_piece()
+        self.label()
         self.check_win()
+
+    def btn0(self):
+        if self.change0:
+            self.change0 = False
+            position = 0
+            PlayGameConsole.GameConsole.update_board(self.player_number, position)
+            self.ids.btn0.text = self.set_piece()
+            self.label()
+            self.check_win()
+            if self.com_exist:
+                self.computer_pick()
 
     def btn1(self):
-        position = 1
-        PlayGameConsole.GameConsole.update_board(self.player_number, position)
-        self.ids.btn1.text = self.set_piece()
-        self.check_win()
+        if self.change1:
+            self.change1 = False
+            position = 1
+            PlayGameConsole.GameConsole.update_board(self.player_number, position)
+            self.ids.btn1.text = self.set_piece()
+            self.label()
+            self.check_win()
+            if self.com_exist:
+                self.computer_pick()
 
     def btn2(self):
-        position = 2
-        PlayGameConsole.GameConsole.update_board(self.player_number, position)
-        self.ids.btn2.text = self.set_piece()
-        self.check_win()
+        if self.change2:
+            self.change2 = False
+            position = 2
+            PlayGameConsole.GameConsole.update_board(self.player_number, position)
+            self.ids.btn2.text = self.set_piece()
+            self.label()
+            self.check_win()
+            if self.com_exist:
+                self.computer_pick()
 
     def btn3(self):
-        position = 3
-        PlayGameConsole.GameConsole.update_board(self.player_number, position)
-        self.ids.btn3.text = self.set_piece()
-        self.check_win()
+        if self.change3:
+            self.change3 = False
+            position = 3
+            PlayGameConsole.GameConsole.update_board(self.player_number, position)
+            self.ids.btn3.text = self.set_piece()
+            self.label()
+            self.check_win()
+            if self.com_exist:
+                self.computer_pick()
 
     def btn4(self):
-        position = 4
-        PlayGameConsole.GameConsole.update_board(self.player_number, position)
-        self.ids.btn4.text = self.set_piece()
-        self.check_win()
+        if self.change4:
+            self.change4 = False
+            position = 4
+            PlayGameConsole.GameConsole.update_board(self.player_number, position)
+            self.ids.btn4.text = self.set_piece()
+            self.label()
+            self.check_win()
+            if self.com_exist:
+                self.computer_pick()
 
     def btn5(self):
-        position = 5
-        PlayGameConsole.GameConsole.update_board(self.player_number, position)
-        self.ids.btn5.text = self.set_piece()
-        self.check_win()
+        if self.change5:
+            self.change5 = False
+            position = 5
+            PlayGameConsole.GameConsole.update_board(self.player_number, position)
+            self.ids.btn5.text = self.set_piece()
+            self.label()
+            self.check_win()
+            if self.com_exist:
+                self.computer_pick()
 
     def btn6(self):
-        position = 6
-        PlayGameConsole.GameConsole.update_board(self.player_number, position)
-        self.ids.btn6.text = self.set_piece()
-        self.check_win()
+        if self.change6:
+            self.change6 = False
+            position = 6
+            PlayGameConsole.GameConsole.update_board(self.player_number, position)
+            self.ids.btn6.text = self.set_piece()
+            self.label()
+            self.check_win()
+            if self.com_exist:
+                self.computer_pick()
 
     def btn7(self):
-        position = 7
-        PlayGameConsole.GameConsole.update_board(self.player_number, position)
-        self.ids.btn7.text = self.set_piece()
-        self.check_win()
+        if self.change7:
+            self.change7 = False
+            position = 7
+            PlayGameConsole.GameConsole.update_board(self.player_number, position)
+            self.ids.btn7.text = self.set_piece()
+            self.label()
+            self.check_win()
+            if self.com_exist:
+                self.computer_pick()
 
     def btn8(self):
-        position = 8
-        PlayGameConsole.GameConsole.update_board(self.player_number, position)
-        self.ids.btn8.text = self.set_piece()
-        self.check_win()
+        if self.change8:
+            self.change8 = False
+            position = 8
+            PlayGameConsole.GameConsole.update_board(self.player_number, position)
+            self.ids.btn8.text = self.set_piece()
+            self.label()
+            self.check_win()
+            if self.com_exist:
+                self.computer_pick()
 
 
-class WinScreen(Screen):
+class XScreen(Screen):
+    def end_game(self):
+        exit()
 
-    label = str(" ")
 
-    @staticmethod
-    def label_change(player_one_win, player_two_win):
-        global label
-        if player_one_win:
-            label = str("O's win!")
-        elif player_two_win:
-            label = str("X's win!")
-        else:
-            label = str("Cats game!")
-        return label
+class OScreen(Screen):
+    def end_game(self):
+        exit()
+
+
+class CatScreen(Screen):
+    def end_game(self):
+        exit()
 
 
 class GraphicsApp(App):
     def build(self):
-        count = 0
 
-        def transition(count):
-            if count == 0:
-                return SlideTransition()
-                count += 1
-            if count == 1:
-                return FadeTranstion()
-
-        sm = ScreenManager(transition=transition(count))
+        sm = ScreenManager(transition=FadeTransition())
         sm.add_widget(TitleScreen(name="Title"))
         sm.add_widget(GameScreen(name="Game"))
-        sm.add_widget(WinScreen(name="Win"))
+        sm.add_widget(XScreen(name="X"))
+        sm.add_widget(OScreen(name="O"))
+        sm.add_widget(CatScreen(name="Cat"))
 
         return sm
