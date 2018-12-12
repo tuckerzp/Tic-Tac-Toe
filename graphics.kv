@@ -1,20 +1,20 @@
 #Kivy 1.10.1
 
-<TitleScreen>:
+<TitleScreen>:                              #Elements to appear on TitleScreen
 
-    FloatLayout:
-        AsyncImage:
-            source: "tictactoe_title.png"
-            pos: (0, 100)
-        Button:
-            font_size: 30
-            color: 0, 1, 0, 1
-            size_hint: 0.5, 0.1
-            pos: (195, 150)
-            id: PvP
-            text: "Player v. Player"
-            on_release: root.manager.current = "Game"; root.p_v_p();
-        Button:
+    FloatLayout:                            # Layout allows elements placed on screen to proportionally fit screen as window is expanded or contracted
+        AsyncImage:                         # import image and place on screen
+            source: "tictactoe_title.png"   # --> source of image (PNG file in root folder)
+            pos: (0, 100)                   # --> position of image (x, y)
+        Button:                             # Create button - sets game to PvC
+            font_size: 30                   # --> font size of text button
+            color: 0, 1, 0, 1               # --> text color of button (r,g,b,transparency)
+            size_hint: 0.5, 0.1             # --> size of button (width, height)
+            pos: (195, 150)                 # --> position of button (x, y)
+            id: PvP                         # --> identification for button
+            text: "Player v. Player"        # --> text displayed on button
+            on_release: root.manager.current = "Game"; root.p_v_p(); # --> when button is clicked on and released switch to screen named "Game" (managed by screen manager) and run method "p_v_p()"
+        Button:                             # Create button - sets game to PvC
             font_size: 30
             color: 0, 1, 0, 1
             size_hint: 0.5, 0.1
@@ -22,92 +22,123 @@
             id: PvC
             text: "Player v. Computer"
             on_release: root.manager.current = "Game"; root.p_v_c();
-        Button:
-            font_size: 30
-            color: 0, 1, 0, 1
-            size_hint: 0.5, 0.1
-            pos: (195, 20)
-            id: CvC
-            text: "Computer v. Computer"
-            on_release: root.manager.current = "Game"; root.c_v_c();
 
-<GameScreen>:
+<GameScreen>:                               #Elements to appear on TitleScreen
 
-    FloatLayout:
-        Button:
+    FloatLayout:                            # Layout allows elements placed on screen to proportionally fit screen as window is expanded or contracted
+        Label:                              # Label - displays who goes first
+            id: label_start
+            pos: (0, 275)
+            text: "Xs Start!"
+        Label:                              # Label - displays turn
+            id: label_turn
+            pos: (0, 257)
+            text: " "
+        Button:                             # Button0 (Slot 0 on gameboard)
             id: btn0
             text: " "
-            pos_hint: {"right": 0.3, "y": 0.7}
+            pos_hint: {"right": 0.3, "y": 0.7} # --> position scaling: aligned right 30% over, and y %70 up
             on_release: root.btn0()
-        Button:
+        Button:                             # Button1 (Slot 1 on gameboard)
             id: btn1
             text: " "
             pos_hint: {"right": 0.6, "y": 0.7}
             on_release: root.btn1()
-        Button:
+        Button:                             # Button2 (Slot 2 on gameboard)
             id: btn2
             text: " "
             pos_hint: {"right": 0.9, "y": 0.7}
             on_release: root.btn2()
-        Button:
+        Button:                             # Button3 (Slot 3 on gameboard)
             id: btn3
             text: " "
             pos_hint: {"right": 0.3, "y": 0.4}
             on_release: root.btn3()
-        Button:
+        Button:                             # Button4 (Slot 4 on gameboard)
             id: btn4
             text: " "
             pos_hint: {"right": 0.6, "y": 0.4}
             on_release: root.btn4()
-        Button:
+        Button:                             # Button5 (Slot 5 on gameboard)
             id: btn5
             text: " "
             pos_hint: {"right": 0.9, "y": 0.4}
             on_release: root.btn5()
-        Button:
+        Button:                             # Button6 (Slot 6 on gameboard)
             id: btn6
             text: " "
             pos_hint: {"right": 0.3, "y": 0.1}
             on_release: root.btn6()
-        Button:
+        Button:                             # Button7 (Slot 7 on gameboard)
             id: btn7
             text: " "
             pos_hint: {"right": 0.6, "y": 0.1}
             on_release: root.btn7()
-        Button:
+        Button:                             # Button8 (Slot 8 on gameboard)
             id: btn8
             text: " "
             pos_hint: {"right": 0.9, "y": 0.1}
             on_release: root.btn8()
 
-<WinScreen>:
+<XScreen>:                                  # Elements to appear on X Win Screen
 
     FloatLayout:
-        Label:
+        Label:                              # Label - displaying winner
             font_size: 30
             color: 1, 1, 1, 1
             size_hint: 0.5, 0.5
             pos: (215, 350)
             id: label_choose
-            on_text: root.label_change()
-        Button:
+            text: "X's Win!"
+        Button:                             # Button - close program
             font_size: 30
             color: 0, 1, 0, 1
             size_hint: 0.5, 0.1
             pos: (195, 150)
-            id: title_btn
-            text: "Return to Menu"
-            on_release: root.manager.current = "Title"
-        Button:
+            id: end_btn
+            text: "End"
+            on_release: root.end_game()
+
+<OScreen>:                                  # Elements to appear on O Win Screen
+
+    FloatLayout:
+        Label:                              # Label - displaying winner
+            font_size: 30
+            color: 1, 1, 1, 1
+            size_hint: 0.5, 0.5
+            pos: (215, 350)
+            id: label_choose
+            text: "O's Win!"
+        Button:                             # Button - close program
             font_size: 30
             color: 0, 1, 0, 1
             size_hint: 0.5, 0.1
-            pos: (195, 85)
-            id: rematch_btn
-            text: "Rematch?"
-            on_release: root.manager.current = "Game"
+            pos: (195, 150)
+            id: end_btn
+            text: "End"
+            on_release: root.end_game()
 
-<Button>:  # Default settings for button
+<CatScreen>:                                # Elements to appear on Cats Game Screen (Tie)
+
+    FloatLayout:
+        Label:                              # Label - displaying winner
+            font_size: 30
+            color: 1, 1, 1, 1
+            size_hint: 0.5, 0.5
+            pos: (215, 350)
+            id: label_choose
+            text: "Cats Game!"
+        Button:                             # Button - close program
+            font_size: 30
+            color: 0, 1, 0, 1
+            size_hint: 0.5, 0.1
+            pos: (195, 150)
+            id: end_btn
+            text: "End"
+            on_release: root.end_game()
+
+
+<Button>:                                   # Set Default settings for button
     font_size: 40
     color: 1, 0, 0, 1
     size_hint: 0.2, 0.2

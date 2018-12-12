@@ -50,7 +50,6 @@ class GameBoard:
                 self.__board[6] != "6" and self.__board[7] != "7" and self.__board[8] != "8"):
             print("Game Tied!")
             self.print_board()
-            self.__board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
             return True
 
     def check_win(self, player):
