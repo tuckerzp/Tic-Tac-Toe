@@ -12,3 +12,7 @@ This is a tic-tac-toe game with PvP & PvCOM
 4. Enjoy game
 5. Repeat steps 2 - 5
 
+## Disclaimer
+This game is a work in progress to play around with
+making a COM player. If a consistent exploit is found,
+create an issue to help in development.

@@ -48,7 +48,6 @@ class GameBoard:
         if (self.__board[0] != "0" and self.__board[1] != "1" and self.__board[2] != "2" and
             self.__board[3] != "3" and self.__board[4] != "4" and self.__board[5] != "5" and
                 self.__board[6] != "6" and self.__board[7] != "7" and self.__board[8] != "8"):
-            print("Game Tied!")
             self.print_board()
             return True
 
