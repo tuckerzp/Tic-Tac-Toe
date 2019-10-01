@@ -183,6 +183,7 @@ class GameConsole:
                     else:
                         Graphics.GameScreen.player_number = 1
             if GameConsole.game.check_tie():
+                print("Game Tied!")
                 GameConsole.__not_tie = False
                 Graphics.GameScreen.player_tie = True
             if GameConsole.game.check_win(1) == 1:
