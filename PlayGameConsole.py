@@ -112,10 +112,6 @@ class ComThink:
         elif new_board[6] == new_board[4] and new_board[2] == "2":
             return 2
 
-        # If middle is empty, play there
-        elif new_board[4] == "4":
-            return 4
-
         # If corners are empty, play there
         elif new_board[0] == "0" or new_board[2] == "2" or new_board[6] == "6" or new_board[8] == "8":
             try_spot = 0
@@ -124,6 +120,10 @@ class ComThink:
                     return try_spot
                 else:
                     try_spot = try_spot + 2
+
+        # If middle is empty, play there
+        elif new_board[4] == "4":
+            return 4
 
         # Finally if edges are empty try there
         elif new_board[1] == "1" or new_board[3] == "3" or new_board[5] == "5" or new_board[7] == "7":
