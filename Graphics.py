@@ -60,15 +60,7 @@ class GameScreen(Screen):
     player_two_win = False
     player_tie = False
 
-    change0 = True
-    change1 = True
-    change2 = True
-    change3 = True
-    change4 = True
-    change5 = True
-    change6 = True
-    change7 = True
-    change8 = True
+    change = [True, True, True, True, True, True, True, True, True]
 
     def check_win(self):
         """"
@@ -135,8 +127,8 @@ class GameScreen(Screen):
         This sets change0 variable to false, not allowing for button or slot's text to be changed.
         Also, when the computer is true (com_exist), the computer will play off of this turn.
         """
-        if self.change0:
-            self.change0 = False
+        if self.change[0]:
+            self.change[0] = False
             position = 0
             PlayGameConsole.GameConsole.update_board(self.player_number, position)
             self.ids.btn0.text = self.set_piece()
@@ -151,8 +143,8 @@ class GameScreen(Screen):
         This sets change1 variable to false, not allowing for button or slot's text to be changed.
         Also, when the computer is true (com_exist), the computer will play off of this turn.
         """
-        if self.change1:
-            self.change1 = False
+        if self.change[1]:
+            self.change[1] = False
             position = 1
             PlayGameConsole.GameConsole.update_board(self.player_number, position)
             self.ids.btn1.text = self.set_piece()
@@ -167,8 +159,8 @@ class GameScreen(Screen):
         This sets change2 variable to false, not allowing for the button or slot's text to be changed.
         Also, when the computer is true (com_exist), the computer will play off of this turn.
         """
-        if self.change2:
-            self.change2 = False
+        if self.change[2]:
+            self.change[2] = False
             position = 2
             PlayGameConsole.GameConsole.update_board(self.player_number, position)
             self.ids.btn2.text = self.set_piece()
@@ -183,8 +175,8 @@ class GameScreen(Screen):
         This sets change3 variable to false, not allowing for the button or slot's text to be changed.
         Also, when the computer is true (com_exist), the computer will play off of this turn.
         """
-        if self.change3:
-            self.change3 = False
+        if self.change[3]:
+            self.change[3] = False
             position = 3
             PlayGameConsole.GameConsole.update_board(self.player_number, position)
             self.ids.btn3.text = self.set_piece()
@@ -199,8 +191,8 @@ class GameScreen(Screen):
         This sets change4 variable to false, not allowing for the button or slot's text to be changed.
         Also, when the computer is true (com_exist), the computer will play off of this turn.
         """
-        if self.change4:
-            self.change4 = False
+        if self.change[4]:
+            self.change[4] = False
             position = 4
             PlayGameConsole.GameConsole.update_board(self.player_number, position)
             self.ids.btn4.text = self.set_piece()
@@ -215,8 +207,8 @@ class GameScreen(Screen):
         This sets change5 variable to false, not allowing for the button or slot's text to be changed.
         Also, when the computer is true (com_exist), the computer will play off of this turn.
         """
-        if self.change5:
-            self.change5 = False
+        if self.change[5]:
+            self.change[5] = False
             position = 5
             PlayGameConsole.GameConsole.update_board(self.player_number, position)
             self.ids.btn5.text = self.set_piece()
@@ -231,8 +223,8 @@ class GameScreen(Screen):
         This sets change6 variable to false, not allowing for the button or slot's text to be changed.
         Also, when the computer is true (com_exist), the computer will play off of this turn.
         """
-        if self.change6:
-            self.change6 = False
+        if self.change[6]:
+            self.change[6] = False
             position = 6
             PlayGameConsole.GameConsole.update_board(self.player_number, position)
             self.ids.btn6.text = self.set_piece()
@@ -247,8 +239,8 @@ class GameScreen(Screen):
         This sets change7 variable to false, not allowing for the button or slot's text to be changed.
         Also, when the computer is true (com_exist), the computer will play off of this turn.
         """
-        if self.change7:
-            self.change7 = False
+        if self.change[7]:
+            self.change[7] = False
             position = 7
             PlayGameConsole.GameConsole.update_board(self.player_number, position)
             self.ids.btn7.text = self.set_piece()
@@ -263,8 +255,8 @@ class GameScreen(Screen):
         This sets change8 variable to false, not allowing for the button or slot's text to be changed.
         Also, when the computer is true (com_exist), the computer will play off of this turn.
         """
-        if self.change8:
-            self.change8 = False
+        if self.change[8]:
+            self.change[8] = False
             position = 8
             PlayGameConsole.GameConsole.update_board(self.player_number, position)
             self.ids.btn8.text = self.set_piece()
