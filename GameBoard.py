@@ -45,11 +45,9 @@ class GameBoard:
         Checks for a tie (Every spot on board has a letter)
         :return: True if the game is tied
         """
-        if (self.__board[0] != "0" and self.__board[1] != "1" and self.__board[2] != "2" and
-            self.__board[3] != "3" and self.__board[4] != "4" and self.__board[5] != "5" and
-                self.__board[6] != "6" and self.__board[7] != "7" and self.__board[8] != "8"):
-            self.print_board()
-            return True
+        return (self.__board[0] != "0" and self.__board[1] != "1" and self.__board[2] != "2" and
+                self.__board[3] != "3" and self.__board[4] != "4" and self.__board[5] != "5" and
+                self.__board[6] != "6" and self.__board[7] != "7" and self.__board[8] != "8")
 
     def check_win(self, player):
         """
@@ -68,7 +66,6 @@ class GameBoard:
                 or self.__board[0] == letter and self.__board[4] == letter and self.__board[8] == letter
                 or self.__board[2] == letter and self.__board[4] == letter and self.__board[6] == letter):
             print("Player #%d wins" % player)
-            self.print_board()
             self.__board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
             return player
 
